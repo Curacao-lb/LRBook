@@ -1,4 +1,110 @@
-/.DS_Store
-/node_modules
-/package-lock.json
-/yarn.lock
+# 忽略 node_modules 文件夹
+node_modules/
+yarn.lock
+
+# 忽略历史文件
+.buckconfig
+.watchmanconfig
+.happypack
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.tscache
+.vscode/
+
+# 忽略 iOS 相关文件
+ios/build/
+ios/Pods/
+**/*.pbxuser
+!default.pbxuser
+**/*.mode1v3
+!default.mode1v3
+**/*.mode2v3
+!default.mode2v3
+**/*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+
+# 忽略 Android 相关文件
+android/.gradle
+android/build/
+android/app/build/
+
+# 忽略快速增量热替换插件（HMR）的临时文件
+*.hmr
+
+# 忽略打包产物
+*.apk
+*.aab
+*.app
+
+# 日志
+logs
+*.log
+npm-debug.log*
+
+# 运行时数据
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# 忽略 Mac OS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 缩略图
+._*
+
+# 忽略 Windows 系统文件
+Thumbs.db
+dbghelp.dll
+ehthumbs.db
+Thumbs.db:encryptable
+stackdump
+
+# 忽略其他不必要的文件
+*.class
+*.jar
+*.war
+*.ear
+*.tmp
+*.bak
+*.swp
+*.yarn-integrity
+.Temporaries
+.trashes
+.Chicane
+
+# Keystore 文件
+*.jks
+*.keystore
+
+# 忽略私密的配置文件
+*.iml
+*.gem
+*.poke
+config.gypi
+CMakeLists.txt.user
+
+# 忽略 dotenv 环境变量文件
+.env
+.env.*
+!.env.example
+
+# 忽略 Yarn 错误日志
+yarn-error.log
+
+# 忽略 Flow 类型检查器的工件
+flow-typed/npm/
+
+# 忽略 Prettier 配置文件
+.prettierrc
