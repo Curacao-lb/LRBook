@@ -3,8 +3,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'; // 替换 Saf
 import { NavigationContainer } from '@react-navigation/native';
 import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
 
-import pageA from './src/modules/pageA';
-import pageB from './src/modules/pageB';
+import Welcome from '@src/modules/welcome';
+import Login from '@src/modules/login';
 
 const Stack = createStackNavigator()
 
@@ -16,16 +16,16 @@ const App = (): JSX.Element => {
         backgroundColor='white'
       />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='pageA' screenOptions={{
+        <Stack.Navigator initialRouteName='Welcome' screenOptions={{
           cardStyle: {
             elevation: 1 // 提升页面的显示层级
           }
         }}>
-          <Stack.Screen component={pageA} name='pageA' options={{
+          <Stack.Screen component={Welcome} name='Welcome' options={{
             headerShown: false,
             ...TransitionPresets.SlideFromRightIOS // 动画，IOS风格动画
           }} />
-          <Stack.Screen component={pageB} name='pageB' options={{
+          <Stack.Screen component={Login} name='Login' options={{
             headerShown: false,
             ...TransitionPresets.SlideFromRightIOS // 动画，IOS风格动画
           }} />
