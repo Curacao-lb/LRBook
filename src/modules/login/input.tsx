@@ -1,4 +1,6 @@
-import { View, Image, TouchableOpacity, Text, Linking, TextInput, LayoutAnimation } from "react-native";
+import { View, Image, TouchableOpacity, Text, TextInput, LayoutAnimation } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
 
 import icon_triangle from '@src/assets/icon_triangle.png'
 import icon_eye_open from '@src/assets/icon_eye_open.png'
@@ -8,7 +10,7 @@ import icon_wx from '@src/assets/icon_wx.png'
 import icon_qq from '@src/assets/icon_qq.webp'
 import icon_close_modal from '@src/assets/icon_close_modal.png'
 
-import { formatPhone } from "@src/utils/stringUtil"
+import { formatPhone, replaceBlank } from "@src/utils/stringUtil"
 
 import { inputStyles } from "./styles"
 import { useState } from "react";
@@ -26,7 +28,17 @@ export default ({ phone, setPhone, setLoginType, check, handleCheckProtocol }: I
   const [pwd, setPwd] = useState<string>('')
   const [eyeOpen, setEyeOpen] = useState<boolean>(false);
   const canLogin = phone?.length === 13 && pwd?.length === 6;
+  const Navigation = useNavigation<StackNavigationProp<any>>()
 
+
+  const onLoginPress = () => {
+    if (!canLogin) {
+      return;
+    }
+    const purePhone = replaceBlank(phone)
+    console.log('purePhone', purePhone);
+    Navigation.replace('Home')
+  }
 
   return (
     <View style={inputStyles.root}>
@@ -86,6 +98,7 @@ export default ({ phone, setPhone, setLoginType, check, handleCheckProtocol }: I
       <TouchableOpacity
         activeOpacity={canLogin ? 0.7 : 1}
         style={canLogin ? inputStyles.loginButton : inputStyles.loginButtonDisable}
+        onPress={onLoginPress}
       >
         <Text style={inputStyles.loginTxt}>登录</Text>
       </TouchableOpacity>
