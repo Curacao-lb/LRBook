@@ -15,6 +15,7 @@ import { formatPhone, replaceBlank } from "@src/utils/stringUtil"
 import { inputStyles } from "./styles"
 import { useState } from "react";
 import { ProtocolComponent } from "./quick";
+import { get } from "@src/utils/request";
 
 interface InputLoginProps {
   setPhone: (text: string) => void
@@ -36,6 +37,17 @@ export default ({ phone, setPhone, setLoginType, check, handleCheckProtocol }: I
       return;
     }
     const purePhone = replaceBlank(phone)
+
+    const params = {
+      name: 'dagongjue',
+      pwd: '123456'
+    }
+
+    get('/user/login', params).then((res: any) => {
+      console.log('res', res);
+
+    })
+
     console.log('purePhone', purePhone);
     Navigation.replace('Home')
   }
