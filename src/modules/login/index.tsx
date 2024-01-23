@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { View, Image } from "react-native";
+import { View, Image, LayoutAnimation } from "react-native";
 import QuickLogin from './quick'
+import InputLogin from './input'
 
 import icon_main_logo from '@src/assets/icon_main_logo.png'
 
@@ -10,17 +11,26 @@ export default () => {
   const [loginType, setLoginType] = useState<'quick' | 'input'>('quick')
   const [check, setCheck] = useState<boolean>(false)
 
+  const [phone, setPhone] = useState<string>('');
+
+  const handleSwitchLoginType = () => {
+    LayoutAnimation.easeInEaseOut();
+    setLoginType('input')
+  }
+
+  const handleCheckProtocol = () => {
+    setCheck(!check)
+  }
+
   if (loginType === 'quick') {
-    const handleCheckProtocol = () => {
-      setCheck(!check)
-    }
-
-    const handleSwitchLoginType = () => {
-      setLoginType('input')
-    }
-
     return (
       <QuickLogin {...{ handleCheckProtocol, handleSwitchLoginType, check }} />
+    )
+  }
+
+  if (loginType === 'input') {
+    return (
+      <InputLogin {...{ phone, setPhone, setLoginType, handleCheckProtocol, check }} />
     )
   }
 
@@ -31,4 +41,3 @@ export default () => {
     </View>
   )
 }
-

@@ -102,3 +102,136 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain'
   }
 })
+
+export const inputStyles = StyleSheet.create({
+  root: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingHorizontal: 48,
+  },
+  pwdLogin: {
+    fontSize: 28,
+    color: '#333',
+    fontWeight: 'bold',
+    marginTop: 56,
+  },
+  tip: {
+    fontSize: 14,
+    color: '#bbb',
+    marginTop: 6,
+  },
+  phoneLayout: {
+    width: '100%',
+    height: 60,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    marginTop: 28,
+  },
+  pre86: {
+    fontSize: 24,
+    color: '#bbb',
+  },
+  triangle: {
+    width: 12,
+    height: 6,
+    marginLeft: 6,
+  },
+  phoneInput: {
+    flex: 1,
+    height: 60,
+    backgroundColor: 'transparent',
+    textAlign: 'left',
+    textAlignVertical: 'center',
+    fontSize: 24,
+    color: '#333',
+    marginLeft: 16,
+  },
+  pwdLayout: {
+    width: '100%',
+    height: 60,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    marginTop: 8,
+  },
+  pwdInput: {
+    marginLeft: 0,
+    marginRight: 16,
+  },
+  iconEye: {
+    width: 30,
+    height: 30,
+  },
+  changeLayout: {
+    width: '100%',
+    marginTop: 10,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  exchangeIcon: {
+    width: 16,
+    height: 16,
+  },
+  codeLoginTxt: {
+    fontSize: 14,
+    color: '#303080',
+    flex: 1,
+    marginLeft: 4,
+  },
+  forgetPwdTxt: {
+    fontSize: 14,
+    color: '#303080',
+  },
+  loginButton: {
+    width: '100%',
+    height: 56,
+    backgroundColor: '#ff2442',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 28,
+    marginTop: 20,
+  },
+  loginButtonDisable: {
+    width: '100%',
+    height: 56,
+    backgroundColor: '#DDDDDD',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 28,
+    marginTop: 20,
+  },
+  loginTxt: {
+    fontSize: 20,
+    color: 'white',
+  },
+  wxqqLayout: {
+    width: '100%',
+    flexDirection: 'row',
+    marginTop: 54,
+    justifyContent: 'center',
+  },
+  iconWx: {
+    width: 50,
+    height: 50,
+    marginRight: 60,
+  },
+  iconQQ: {
+    width: 50,
+    height: 50,
+    marginLeft: 60,
+  },
+  closeButton: {
+    position: 'absolute',
+    left: 36,
+    top: 24,
+  },
+  closeImg: {
+    width: 28,
+    height: 28,
+  },
+})

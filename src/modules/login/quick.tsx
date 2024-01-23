@@ -12,23 +12,28 @@ interface QuickLoginProps {
   handleSwitchLoginType: () => void
 }
 
+// 协议组件公共组件
+export const ProtocolComponent = ({ handleCheckProtocol, check }: { handleCheckProtocol: () => void, check: boolean }): JSX.Element => (
+  <View style={quickStyles.protocol}>
+    <TouchableOpacity onPress={handleCheckProtocol}>
+      <Image source={check ? icon_selected : icon_unselected} style={quickStyles.radioButton} />
+    </TouchableOpacity>
+    <Text style={quickStyles.text}>我已阅读并同意</Text>
+    <TouchableOpacity
+      onPress={() => {
+        Linking.openURL('https://www.baidu.com')
+      }}
+    >
+      <Text style={quickStyles.protocolTxt}>《用户协议》和《隐私政策》</Text>
+    </TouchableOpacity>
+  </View>
+)
+
 export default ({ handleCheckProtocol, check, handleSwitchLoginType }: QuickLoginProps) => {
   return (
     <View style={quickStyles.root}>
       {/* 协议组件 */}
-      <View style={quickStyles.protocol}>
-        <TouchableOpacity onPress={handleCheckProtocol}>
-          <Image source={check ? icon_selected : icon_unselected} style={quickStyles.radioButton} />
-        </TouchableOpacity>
-        <Text style={quickStyles.text}>我已阅读并同意</Text>
-        <TouchableOpacity
-          onPress={() => {
-            Linking.openURL('https://www.baidu.com')
-          }}
-        >
-          <Text style={quickStyles.protocolTxt}>《用户协议》和《隐私政策》</Text>
-        </TouchableOpacity>
-      </View>
+      <ProtocolComponent {...{ handleCheckProtocol, check }} />
       {/* 其他登录方式 */}
       <TouchableOpacity
         style={quickStyles.otherLoginButton}
