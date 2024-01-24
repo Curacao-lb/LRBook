@@ -15,7 +15,7 @@ import { formatPhone, replaceBlank } from "@src/utils/stringUtil"
 import { inputStyles } from "./styles"
 import { useState } from "react";
 import { ProtocolComponent } from "./quick";
-import { request } from "@src/utils/request";
+import userStore from "@src/store/userStore";
 
 interface InputLoginProps {
   setPhone: (text: string) => void
@@ -28,27 +28,23 @@ interface InputLoginProps {
 export default ({ phone, setPhone, setLoginType, check, handleCheckProtocol }: InputLoginProps) => {
   const [pwd, setPwd] = useState<string>('')
   const [eyeOpen, setEyeOpen] = useState<boolean>(false);
+  const { setUserInfo } = userStore((state: any) => state)
   const canLogin = phone?.length === 13 && pwd?.length === 6;
   const Navigation = useNavigation<StackNavigationProp<any>>()
 
-
-  const onLoginPress = async () => {
-    if (!canLogin) {
+  const onLoginPress = async (): Promise<void> => {
+    if (!canLogin || !check) {
       return;
     }
-    const purePhone = replaceBlank(phone)
-
     const params = {
-      name: 'dagongjue',
-      pwd: '123456'
+      name: replaceBlank(phone),
+      pwd
     }
 
-    const res = await request('login', params)
-    console.log('res', res);
-
-
-    console.log('purePhone', purePhone);
-    Navigation.replace('Home')
+    const result = await setUserInfo(params)
+    if (result === 'success') {
+      Navigation.replace('Home')
+    }
   }
 
   return (
