@@ -17,7 +17,7 @@ export default () => {
   const getUserInfo = async () => {
     const cachedUserInfo = await load('userInfo')
     if (cachedUserInfo) {
-      Navigation.replace('Home')
+      Navigation.replace('MainTab')
     } else {
       Navigation.replace('Login')
     }

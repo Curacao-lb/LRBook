@@ -5,7 +5,7 @@ import { TransitionPresets, createStackNavigator } from '@react-navigation/stack
 
 import Welcome from '@src/modules/welcome';
 import Login from '@src/modules/login';
-import Home from '@src/modules/home/homeTab'
+import mainTab from '@src/modules/mainTab';
 
 const Stack = createStackNavigator()
 
@@ -30,7 +30,7 @@ const App = (): JSX.Element => {
             headerShown: false,
             ...TransitionPresets.SlideFromRightIOS // 动画，IOS风格动画
           }} />
-          <Stack.Screen component={Home} name='Home' options={{
+          <Stack.Screen component={mainTab} name='MainTab' options={{
             headerShown: false,
             ...TransitionPresets.SlideFromRightIOS // 动画，IOS风格动画
           }} />

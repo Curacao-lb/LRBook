@@ -43,7 +43,7 @@ export default ({ phone, setPhone, setLoginType, check, handleCheckProtocol }: I
 
     const result = await setUserInfo(params)
     if (result === 'success') {
-      Navigation.replace('Home')
+      Navigation.replace('MainTab')
     }
   }
 
