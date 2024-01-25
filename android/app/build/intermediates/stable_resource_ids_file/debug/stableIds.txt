@@ -1,3 +1,4 @@
+com.lrbook:xml/imagepicker_provider_paths = 0x7f120000
 com.lrbook:styleable/ViewPager2 = 0x7f110093
 com.lrbook:styleable/ViewBackgroundHelper = 0x7f110092
 com.lrbook:styleable/Variant = 0x7f110090
@@ -3348,7 +3349,7 @@ com.lrbook:id/month_grid = 0x7f080104
 com.lrbook:attr/iconTint = 0x7f030213
 com.lrbook:string/m3_ref_typeface_brand_medium = 0x7f0f0051
 com.lrbook:attr/windowActionBarOverlay = 0x7f03048c
-com.lrbook:xml/rn_dev_preferences = 0x7f120000
+com.lrbook:xml/rn_dev_preferences = 0x7f120001
 com.lrbook:style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense = 0x7f10044d
 com.lrbook:attr/windowActionBar = 0x7f03048b
 com.lrbook:macro/m3_comp_secondary_navigation_tab_hover_state_layer_color = 0x7f0c00e0

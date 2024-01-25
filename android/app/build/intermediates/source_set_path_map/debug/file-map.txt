@@ -39,5 +39,6 @@ com.lrbook.app-debug-37 /Users/luobin/project/LRBook/android/app/src/debug/res
 com.lrbook.app-main-38 /Users/luobin/project/LRBook/android/app/src/main/res
 com.lrbook.app-packaged_res-39 /Users/luobin/project/LRBook/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/packaged_res/debug
 com.lrbook.app-packaged_res-40 /Users/luobin/project/LRBook/node_modules/react-native-gesture-handler/android/build/intermediates/packaged_res/debug
-com.lrbook.app-packaged_res-41 /Users/luobin/project/LRBook/node_modules/react-native-safe-area-context/android/build/intermediates/packaged_res/debug
-com.lrbook.app-packaged_res-42 /Users/luobin/project/LRBook/node_modules/react-native-screens/android/build/intermediates/packaged_res/debug
+com.lrbook.app-packaged_res-41 /Users/luobin/project/LRBook/node_modules/react-native-image-picker/android/build/intermediates/packaged_res/debug
+com.lrbook.app-packaged_res-42 /Users/luobin/project/LRBook/node_modules/react-native-safe-area-context/android/build/intermediates/packaged_res/debug
+com.lrbook.app-packaged_res-43 /Users/luobin/project/LRBook/node_modules/react-native-screens/android/build/intermediates/packaged_res/debug
