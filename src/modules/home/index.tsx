@@ -1,14 +1,23 @@
-import { useEffect } from "react";
-import { View, Text, FlatList, TouchableOpacity, Image, Dimensions } from "react-native";
-import { indexStyles } from './style'
-import homeStore, { ArticleSimple } from "@src/store/homeStore";
+import { useEffect } from "react"
+import { View, Text, TouchableOpacity, Image } from "react-native"
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import homeStore, { ArticleSimple } from "@src/store/homeStore"
+import FlowList from '@src/components/flowlist/FlowList.js'
+import ResizeImage from "@src/components/resizeImage"
+
+import { indexStyles } from './style'
+import Heart from "@src/components/heart"
 
 const Footer = () => {
   return (
     <Text style={indexStyles.footerTxt}>没有更多数据</Text>
-  );
+  )
+}
+
+const Header = () => {
+  return (
+    <Text style={indexStyles.footerTxt}>robin-test</Text>
+  )
 }
 
 export default () => {
@@ -29,18 +38,17 @@ export default () => {
         style={indexStyles.item}
       // onPress={onArticlePress(item)}
       >
-        {/* <ResizeImage uri={item.image} /> */}
-        <Image style={indexStyles.itemImage} source={{ uri: item.image }} />
+        <ResizeImage uri={item.image} />
         <Text style={indexStyles.titleTxt}>{item.title}</Text>
         <View style={indexStyles.nameLayout}>
           <Image style={indexStyles.avatarImg} source={{ uri: item.avatarUrl }} />
           <Text style={indexStyles.nameTxt}>{item.userName}</Text>
-          {/* <Heart
+          <Heart
             value={item.isFavorite}
             onValueChanged={(value: boolean) => {
-              console.log(value);
+              console.log(value)
             }}
-          /> */}
+          />
           <Text style={indexStyles.countTxt}>{item.favoriteCount}</Text>
         </View>
       </TouchableOpacity>
@@ -49,7 +57,7 @@ export default () => {
 
   return (
     <View style={indexStyles.root}>
-      <FlatList
+      <FlowList
         style={indexStyles.flatList}
         data={homeList}
         renderItem={renderItem}
@@ -60,6 +68,7 @@ export default () => {
         onEndReachedThreshold={0.1}
         onEndReached={setHomeList}
         ListFooterComponent={<Footer />}
+        ListHeaderComponent={<Header />}
       />
     </View>
   )

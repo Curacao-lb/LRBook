@@ -67,10 +67,5 @@ export const indexStyles = StyleSheet.create({
     marginVertical: 16,
     textAlign: 'center',
     textAlignVertical: 'center',
-  },
-  itemImage: {
-    width: '100%',
-    height: 250,
-    resizeMode: 'cover'
   }
 })
