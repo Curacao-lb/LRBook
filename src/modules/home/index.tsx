@@ -7,6 +7,7 @@ import ResizeImage from "@src/components/resizeImage"
 
 import { indexStyles } from './style'
 import Heart from "@src/components/heart"
+import TitleBar from "./components/titleBar"
 
 const Footer = () => {
   return (
@@ -16,7 +17,7 @@ const Footer = () => {
 
 const Header = () => {
   return (
-    <Text style={indexStyles.footerTxt}>robin-test</Text>
+    <Text style={indexStyles.footerTxt}>已经到最顶了</Text>
   )
 }
 
@@ -57,6 +58,12 @@ export default () => {
 
   return (
     <View style={indexStyles.root}>
+      <TitleBar
+        tab={1}
+        onTabChanged={(tab: number) => {
+          console.log(`tab=${tab}`)
+        }}
+      />
       <FlowList
         style={indexStyles.flatList}
         data={homeList}
