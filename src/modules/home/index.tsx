@@ -1,13 +1,15 @@
 import { useEffect } from "react"
 import { View, Text, TouchableOpacity, Image } from "react-native"
 
-import homeStore, { ArticleSimple } from "@src/store/homeStore"
+import homeStore from "@src/store/homeStore"
+import { ArticleSimple, Category, IhomeStore } from "@src/store/type"
 import FlowList from '@src/components/flowlist/FlowList.js'
 import ResizeImage from "@src/components/resizeImage"
 
 import { indexStyles } from './style'
 import Heart from "@src/components/heart"
 import TitleBar from "./components/titleBar"
+import CategoryList from "./components/categoryList"
 
 const Footer = () => {
   return (
@@ -15,22 +17,21 @@ const Footer = () => {
   )
 }
 
-const Header = () => {
-  return (
-    <Text style={indexStyles.footerTxt}>已经到最顶了</Text>
-  )
-}
-
 export default () => {
-  const { setHomeList, homeList, isRefreshing, resetPage } = homeStore((state: any) => state)
+  const { setHomeList, homeList, isRefreshing, resetPage, getCategoryList, categoryList } = homeStore((state: IhomeStore) => state)
 
   useEffect(() => {
     setHomeList()
+    getCategoryList()
   }, [])
 
   const getData = (): void => {
     resetPage()
     setHomeList()
+  }
+
+  const onCategoryChange = (category: Category) => {
+    console.log(JSON.stringify(category));
   }
 
   const renderItem = ({ item, index }: { item: ArticleSimple, index: number }) => {
@@ -65,6 +66,7 @@ export default () => {
         }}
       />
       <FlowList
+        keyExtrator={(item: ArticleSimple) => `${item.id}`}
         style={indexStyles.flatList}
         data={homeList}
         renderItem={renderItem}
@@ -75,7 +77,7 @@ export default () => {
         onEndReachedThreshold={0.1}
         onEndReached={setHomeList}
         ListFooterComponent={<Footer />}
-        ListHeaderComponent={<Header />}
+        ListHeaderComponent={<CategoryList {...{ categoryList, onCategoryChange }} />}
       />
     </View>
   )

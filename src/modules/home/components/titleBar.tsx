@@ -11,7 +11,7 @@ import icon_search from '@src/assets/icon_search.png'
 
 import { styles } from './styles'
 
-export default ({ tab = 0, onTabChanged }: { tab?: number, onTabChanged?: (tab: number) => void }) => {
+export default ({ tab, onTabChanged }: { tab: number, onTabChanged?: (tab: number) => void }) => {
   const [tabIndex, setTabIndex] = useState<number>(1)
 
   useEffect(() => {

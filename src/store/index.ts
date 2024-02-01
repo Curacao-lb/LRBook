@@ -8,12 +8,8 @@ export const save = async (key: string, value: string) => {
   }
 }
 
-export const load = async (key: string) => {
-  try {
-    return await AsyncStorage.getItem(key)
-  } catch (e) {
-    return e
-  }
+export const load = async (key: string): Promise<string | null> => {
+  return await AsyncStorage.getItem(key)
 }
 
 export const remove = async (key: string) => {

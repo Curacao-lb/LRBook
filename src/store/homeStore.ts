@@ -1,66 +1,18 @@
 import { create } from 'zustand'
 import { request } from '@src/utils/request'
-
-export type ArticleComment = {
-  userName: string
-  avatarUrl: string
-  message: string
-  dateTime: string
-  location: string
-  favoriteCount: number // 点赞数
-  isFavorite: boolean // 是否有点赞
-  children?: ArticleComment[] // 评论的评论
-}
-
-export type Article = {
-  id: number
-  title: string
-  desc: string
-  tag: string[]
-  dateTime: string
-  location: string
-  userId: number
-  userName: string
-  isFollow: boolean // 是否关注了作者
-  avatarUrl: string
-  images: string[]
-  favoriteCount: number // 点赞数
-  collectionCount: number // 收藏数
-  isFavorite: boolean // 是否有点赞
-  isCollection: boolean // 是否有收藏
-  comments?: ArticleComment[] // 评论数组
-}
-
-// 简化版的文章类型
-export type ArticleSimple = {
-  id: number
-  title: string
-  userName: string
-  avatarUrl: string
-  favoriteCount: number
-  isFavorite: boolean
-  image: string
-}
-
-type IhomeStore = {
-  homeList: ArticleSimple[]
-  setHomeList: (params: any) => void
-  page: number
-  isRefreshing: boolean // 当前是否处于刷新状态
-  resetPage: () => void
-}
-
-interface ParamsType {
-  [key: string]: any
-}
+import { IhomeStore, ParamsType } from './type'
+import { load } from '.'
+import { DEFAULT_CATEGORY_LIST } from './data'
 
 const homeStore = create<IhomeStore>((set, get) => ({
-  homeList: [],
-  setHomeList: (params: any) => requestList(params, set, get),
+  homeList: [], // 主页数据
+  setHomeList: (params: ParamsType) => requestList(params, set, get), // 设置主页数据方法
   page: 1,
   size: 10,
   isRefreshing: false,
   resetPage: () => set({ page: 1 }),
+  categoryList: [],
+  getCategoryList: () => getCategoryList(set) // 获取首页频道选择列表，从本地取出
 }))
 
 const requestList = async (params: ParamsType, set: Function, get: Function) => {
@@ -91,6 +43,20 @@ const requestList = async (params: ParamsType, set: Function, get: Function) => 
   }
 
   set({ isRefreshing: false })
+}
+
+const getCategoryList = async (set: Function) => {
+  const cacheList = await load('categoryList')
+  if (cacheList) {
+    const list = JSON.parse(cacheList)
+    if (list?.length) {
+      set({ categoryList: list })
+    } else {
+      set({ categoryList: DEFAULT_CATEGORY_LIST })
+    }
+  } else {
+    set({ categoryList: DEFAULT_CATEGORY_LIST })
+  }
 }
 
 export default homeStore

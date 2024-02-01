@@ -51,3 +51,43 @@ export const styles = StyleSheet.create({
     color: '#333',
   },
 })
+
+export const categoryListStyles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: 36,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    marginBottom: 6,
+  },
+  scrollView: {
+    flex: 1,
+    height: '100%',
+  },
+  openButton: {
+    width: 40,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  openImg: {
+    width: 18,
+    height: 18,
+    transform: [{ rotate: '-90deg' }]
+  },
+  tabItem: {
+    width: 64,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tabItemTxt: {
+    fontSize: 16,
+    color: '#999',
+  },
+  tabItemTxtSelected: {
+    fontSize: 16,
+    color: '#333',
+    fontWeight: 'bold',
+  },
+})
