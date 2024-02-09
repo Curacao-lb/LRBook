@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { request } from '@src/utils/request'
-import { ToastAndroid } from 'react-native'
 import { save } from '.'
+import Toast from '@src/components/widget/Toast'
+import Loading from '@src/components/widget/Loading'
 
 const userStore = create((set) => ({
   userInfo: {},
@@ -9,14 +10,17 @@ const userStore = create((set) => ({
 }))
 
 const requestLogin = async (params: any, set: Function): Promise<string> => {
+  Loading.show()
   const res = await request('login', params)
 
   if (res?.data) {
     set({ userInfo: res.data })
     save('userInfo', JSON.stringify(res.data))
+    Loading.hide()
     return 'success'
   } else {
-    ToastAndroid.show('登录失败', ToastAndroid.SHORT)
+    Toast.show('登录失败，请检查用户名和密码')
+    Loading.hide()
     return 'failed'
   }
 }

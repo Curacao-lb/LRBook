@@ -3,6 +3,7 @@ import { request } from '@src/utils/request'
 import { IhomeStore, ParamsType } from './type'
 import { load } from '.'
 import { DEFAULT_CATEGORY_LIST } from './data'
+import Loading from '@src/components/widget/Loading'
 
 const homeStore = create<IhomeStore>((set, get) => ({
   homeList: [], // 主页数据
@@ -28,6 +29,8 @@ const requestList = async (params: ParamsType, set: Function, get: Function) => 
     size,
   }
 
+  Loading.show()
+
   // 执行请求操作
   const { data } = await request('homeList', param)
 
@@ -43,6 +46,7 @@ const requestList = async (params: ParamsType, set: Function, get: Function) => 
   }
 
   set({ isRefreshing: false })
+  Loading.hide()
 }
 
 const getCategoryList = async (set: Function) => {
