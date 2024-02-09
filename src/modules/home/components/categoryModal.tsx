@@ -1,21 +1,18 @@
 import {
   View,
   Text,
-  StyleSheet,
   Image,
   LayoutAnimation,
   TouchableOpacity,
-  StatusBar,
   Modal,
-  Dimensions,
 } from 'react-native'
 
 import { categoryModalStyles } from './styles'
 import { useEffect, useState } from 'react'
-import { Category } from '@src/store/type'
 
 import icon_arrow from '@src/assets/icon_arrow.png'
 import icon_delete from '@src/assets/icon_delete.png'
+import { Category } from '@src/store/type'
 import { save } from '@src/store'
 
 export type CategoryModalProps = {
@@ -30,10 +27,44 @@ export type MyListProps = {
   otherList: Category[] | undefined
   currentList: Category[] | undefined
   isMyList: boolean
+  setMyList: (list: Category[]) => void
+  setOtherList: (list: Category[]) => void
+  edit: boolean
+  setEdit: (state: boolean) => void
 }
 
-const MyList = ({ setVisible, myList, otherList, currentList, isMyList }: MyListProps) => {
-  const [edit, setEdit] = useState<boolean>(false)
+const MyList = ({ setVisible, myList, otherList, currentList, isMyList, setMyList, setOtherList, edit, setEdit }: MyListProps) => {
+  const onItemPress = (item: Category, index: number, isMyList: boolean): void => {
+    if (!edit) return // 如果不是编辑态则不允许操作
+
+    if (isMyList) {
+      handleToggleMyList(item)
+    } else {
+      handleToggleOtherList(item)
+    }
+  }
+
+  // 点击我的列表中的内容移出并且加入到其他列表中
+  const handleToggleMyList = (item: Category): void => {
+    const newList = myList?.filter(({ name }) => name !== item.name)
+    const newOtherList = otherList && [...otherList, { ...item, isAdd: false }]
+
+    LayoutAnimation.easeInEaseOut()
+    setMyList(newList ?? [])
+    setOtherList(newOtherList ?? [])
+  }
+
+  // 点击其他列表中的内容移出并且加入到我的列表中
+  const handleToggleOtherList = (item: Category): void => {
+    console.log(123);
+
+    const newOtherList = otherList?.filter(({ name }) => name !== item.name)
+    const newMyList = myList && [...myList, { ...item, isAdd: true }]
+
+    LayoutAnimation.easeInEaseOut()
+    setMyList(newMyList ?? [])
+    setOtherList(newOtherList ?? [])
+  }
 
   return (
     <>
@@ -46,15 +77,12 @@ const MyList = ({ setVisible, myList, otherList, currentList, isMyList }: MyList
               <TouchableOpacity
                 style={categoryModalStyles.editButton}
                 onPress={() => {
-                  setEdit((data => {
-                    if (data) {
-                      myList && otherList && save('categoryList', JSON.stringify([...myList, ...otherList]))
-                      return false
-                    } else {
-                      return true
-                    }
+                  if (edit) {
+                    myList && otherList && save('categoryList', JSON.stringify([...myList, ...otherList]))
+                    setEdit(false)
+                  } else {
+                    setEdit(true)
                   }
-                  ))
                 }}
               >
                 <Text style={categoryModalStyles.editTxt}>
@@ -77,10 +105,10 @@ const MyList = ({ setVisible, myList, otherList, currentList, isMyList }: MyList
             <TouchableOpacity
               key={`${item.name}`}
               style={item.default ? categoryModalStyles.itemLayoutDefault : categoryModalStyles.itemLayout}
-            // onPress={onMyItemPress(item, index)}
+              onPress={() => onItemPress(item, index, isMyList)}
             >
-              <Text style={categoryModalStyles.itemTxt}>{item.name}</Text>
-              {edit && !item.default && <Image style={categoryModalStyles.deleteImg} source={icon_delete} />}
+              <Text style={categoryModalStyles.itemTxt}>{isMyList ? item.name : `+ ${item.name}`}</Text>
+              {isMyList && edit && !item.default && <Image style={categoryModalStyles.deleteImg} source={icon_delete} />}
             </TouchableOpacity>
           )
         })}
@@ -92,6 +120,7 @@ const MyList = ({ setVisible, myList, otherList, currentList, isMyList }: MyList
 export default ({ visible, setVisible, categoryList }: CategoryModalProps) => {
   const [myList, setMyList] = useState<Category[]>()
   const [otherList, setOtherList] = useState<Category[]>()
+  const [edit, setEdit] = useState<boolean>(false)
 
   useEffect(() => {
     if (!categoryList) {
@@ -111,8 +140,8 @@ export default ({ visible, setVisible, categoryList }: CategoryModalProps) => {
     >
       <View style={categoryModalStyles.root}>
         <View style={categoryModalStyles.content}>
-          <MyList {...{ setVisible, myList, otherList }} isMyList={true} currentList={myList} />
-          <MyList {...{ setVisible, myList, otherList }} isMyList={false} currentList={otherList} />
+          <MyList {...{ setVisible, myList, otherList, setMyList, setOtherList, edit, setEdit }} isMyList={true} currentList={myList} />
+          <MyList {...{ setVisible, myList, otherList, setMyList, setOtherList, edit, setEdit }} isMyList={false} currentList={otherList} />
           {/* 蒙层 */}
           <View style={categoryModalStyles.mask} />
         </View>
