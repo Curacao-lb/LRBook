@@ -1,60 +1,60 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react"
 import {
   Image,
   TouchableOpacity,
   StyleSheet,
   Animated
-} from 'react-native';
+} from 'react-native'
 
-import icon_heart from '@src/assets/icon_heart.png';
-import icon_heart_empty from '@src/assets/icon_heart_empty.png';
+import icon_heart from '@src/assets/icon_heart.png'
+import icon_heart_empty from '@src/assets/icon_heart_empty.png'
 
 type Props = {
-  value: boolean;
-  onValueChanged?: (value: boolean) => void;
-  size?: number;
+  value: boolean
+  onValueChanged?: (value: boolean) => void
+  size?: number
 }
 
 export default (props: Props) => {
 
-  const { value, onValueChanged, size = 20 } = props;
+  const { value, onValueChanged, size = 20 } = props
 
-  const [showState, setShowState] = useState<boolean>(false);
+  const [showState, setShowState] = useState<boolean>(false)
 
-  const scale = useRef<Animated.Value>(new Animated.Value(0)).current;
+  const scale = useRef<Animated.Value>(new Animated.Value(0)).current
 
-  const alpha = useRef<Animated.Value>(new Animated.Value(0)).current;
+  const alpha = useRef<Animated.Value>(new Animated.Value(0)).current
 
   useEffect(() => {
     // 数据回显
-    setShowState(value);
-  }, [value]);
+    setShowState(value)
+  }, [value])
 
   const onHeartPress = () => {
-    const newState = !showState;
-    setShowState(newState);
-    onValueChanged?.(newState);
+    const newState = !showState
+    setShowState(newState)
+    onValueChanged?.(newState)
 
     if (newState) {
-      alpha.setValue(1);
+      alpha.setValue(1)
       const scaleAnim = Animated.timing(scale, {
         toValue: 1.8,
         duration: 300,
         useNativeDriver: false,
-      });
+      })
 
       const alphaAnim = Animated.timing(alpha, {
         toValue: 0,
         duration: 400,
         useNativeDriver: false,
         delay: 200,
-      });
+      })
 
       // 同步执行动画
-      Animated.parallel([scaleAnim, alphaAnim]).start();
+      Animated.parallel([scaleAnim, alphaAnim]).start()
     } else {
-      scale.setValue(0);
-      alpha.setValue(0);
+      scale.setValue(0)
+      alpha.setValue(0)
     }
   }
 
@@ -78,7 +78,7 @@ export default (props: Props) => {
         opacity: alpha,
       }} />
     </TouchableOpacity>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
     height: 20,
     resizeMode: 'contain',
   },
-});
+})

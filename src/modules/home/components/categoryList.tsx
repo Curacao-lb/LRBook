@@ -10,15 +10,16 @@ import icon_arrow from '@src/assets/icon_arrow.png'
 import { categoryListStyles } from './styles'
 import { Category } from '@src/store/type'
 import { useEffect, useState } from 'react'
+import CategoryModal from './categoryModal'
 
 type Props = {
   categoryList: Category[]
-  allCategoryList?: Category[]
   onCategoryChange: (category: Category) => void
 }
 
 export default ({ categoryList, onCategoryChange }: Props) => {
   const [category, setCategory] = useState<Category>()
+  const [visible, setVisible] = useState<boolean>(false) // 设置 Modal 的显隐
 
   useEffect(() => {
     if (categoryList.length > 0) {
@@ -58,6 +59,15 @@ export default ({ categoryList, onCategoryChange }: Props) => {
           })
         }
       </ScrollView>
+
+      <TouchableOpacity
+        style={categoryListStyles.openButton}
+        onPress={() => setVisible(true)}
+      >
+        <Image style={categoryListStyles.openImg} source={icon_arrow} />
+      </TouchableOpacity>
+
+      <CategoryModal {...{ setVisible, visible, categoryList }} />
     </View>
   )
 }

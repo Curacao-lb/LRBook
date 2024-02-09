@@ -1,4 +1,7 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, StatusBar, Dimensions } from "react-native"
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
 
 export const styles = StyleSheet.create({
   titleLayout: {
@@ -89,5 +92,99 @@ export const categoryListStyles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     fontWeight: 'bold',
+  },
+})
+
+export const categoryModalStyles = StyleSheet.create({
+  root: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent',
+  },
+  content: {
+    width: '100%',
+    backgroundColor: 'white',
+    marginTop: 48,
+    paddingBottom: 40,
+  },
+  mask: {
+    width: '100%',
+    flex: 1,
+    backgroundColor: '#00000060',
+  },
+  row: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  titleTxt: {
+    fontSize: 16,
+    color: '#333',
+    fontWeight: 'bold',
+    marginLeft: 16,
+  },
+  subTitleTxt: {
+    fontSize: 13,
+    color: '#999',
+    marginLeft: 12,
+    flex: 1,
+  },
+  editButton: {
+    paddingHorizontal: 10,
+    height: 28,
+    backgroundColor: '#EEE',
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  editTxt: {
+    fontSize: 13,
+    color: '#3050ff',
+  },
+  closeButton: {
+    padding: 16,
+  },
+  closeImg: {
+    width: 16,
+    height: 16,
+    resizeMode: 'contain',
+    transform: [{ rotate: '90deg' }]
+  },
+  listContent: {
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  itemLayout: {
+    width: SCREEN_WIDTH - 80 >> 2,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#eee',
+    borderRadius: 6,
+    marginLeft: 16,
+    marginTop: 12,
+  },
+  itemLayoutDefault: {
+    width: SCREEN_WIDTH - 80 >> 2,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#eee',
+    borderRadius: 6,
+    marginLeft: 16,
+    marginTop: 12,
+  },
+  itemTxt: {
+    fontSize: 16,
+    color: '#666',
+  },
+  deleteImg: {
+    width: 16,
+    height: 16,
+    position: 'absolute',
+    top: -6,
+    right: -6,
   },
 })
