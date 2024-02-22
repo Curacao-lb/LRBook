@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import { View, Text, TouchableOpacity, Image } from "react-native"
 
 import homeStore from "@src/store/homeStore"
@@ -10,6 +10,8 @@ import { indexStyles } from './style'
 import Heart from "@src/components/heart"
 import TitleBar from "./components/titleBar"
 import CategoryList from "./components/categoryList"
+import { useNavigation } from "@react-navigation/native"
+import { StackNavigationProp } from "@react-navigation/stack"
 
 const Footer = () => {
   return (
@@ -19,6 +21,8 @@ const Footer = () => {
 
 export default () => {
   const { setHomeList, homeList, isRefreshing, resetPage, getCategoryList, categoryList } = homeStore((state: IhomeStore) => state)
+
+  const navigation = useNavigation<StackNavigationProp<any>>()
 
   useEffect(() => {
     setHomeList()
@@ -34,11 +38,15 @@ export default () => {
     console.log(JSON.stringify(category));
   }
 
+  const onArticlePress = useCallback((item: ArticleSimple) => {
+    navigation.push('ArticleDetail', { id: item.id })
+  }, [])
+
   const renderItem = ({ item, index }: { item: ArticleSimple, index: number }) => {
     return (
       <TouchableOpacity
         style={indexStyles.item}
-      // onPress={onArticlePress(item)}
+        onPress={() => onArticlePress(item)}
       >
         <ResizeImage uri={item.image} />
         <Text style={indexStyles.titleTxt}>{item.title}</Text>

@@ -58,3 +58,8 @@ export type Category = {
   default: boolean; // 是否是默认展示
   isAdd: boolean; // 是否是已经添加的
 }
+
+export type IArticleDetail = {
+  details: Article
+  setArticleDetails: ({ id }: { id: number }) => void
+}
