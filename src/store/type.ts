@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native"
+
 export type ArticleComment = {
   userName: string
   avatarUrl: string
@@ -20,7 +22,7 @@ export type Article = {
   userName: string
   isFollow: boolean // 是否关注了作者
   avatarUrl: string
-  images: string[]
+  images: ImageSourcePropType[]
   favoriteCount: number // 点赞数
   collectionCount: number // 收藏数
   isFavorite: boolean // 是否有点赞
