@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react'
+import { RouteProp, useRoute } from '@react-navigation/native'
 import {
   View,
-  Text,
   Dimensions,
   Image,
-  TouchableOpacity,
-  ScrollView,
-  TextInput,
+  ScrollView
 } from 'react-native'
 
-import styles from './styles'
 import articleDetailStore from '@src/store/articleDetailStore'
 import { IArticleDetail } from '@src/store/type'
-import { RouteProp, useRoute } from '@react-navigation/native'
+
+import styles from './styles'
 import ArticlTitle from './components/title'
 import Images from './components/images'
+import Info from './components/info'
+import Comments from './components/comments'
+import Bottom from './components/bottom'
 
 type RouteParams = {
   ArticleDetail: {
@@ -57,7 +58,10 @@ export default () => {
           showsVerticalScrollIndicator={false}
         >
           <Images {...{ height }} />
+          <Info />
+          <Comments />
         </ScrollView>
+        <Bottom />
       </View>
     ) : null
   )

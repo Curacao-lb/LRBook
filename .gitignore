@@ -33,7 +33,7 @@ DerivedData
 *.ipa
 
 # 忽略 Android 相关文件
-android/.gradle
+android/.gradle/
 android/build/
 android/app/build/
 
