@@ -65,3 +65,29 @@ export type IArticleDetail = {
   details: Article
   setArticleDetails: ({ id }: { id: number }) => void
 }
+
+// 购物列表-商品信息
+export type GoodsSimple = {
+  id: number;
+  title: string;
+  image: string;
+  price: number;
+  originPrice: number | undefined;
+  promotion: string | undefined;
+}
+
+export type IShoppingStore = {
+  goodsList: GoodsSimple[]
+  setShoppingList: () => void
+  page: number
+  size: number
+  refreshing: boolean
+  categoryList: GoodsCategory[]
+  setTopTenCategoryList: () => void
+}
+
+export type GoodsCategory = {
+  id: number;
+  name: string;
+  image: string;
+}

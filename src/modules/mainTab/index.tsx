@@ -93,7 +93,8 @@ export default () => {
           name='Shopping'
           component={Shopping}
           options={{
-            title: '购物'
+            title: '购物',
+            headerShown: false
           }}
         />
         <BottomTab.Screen

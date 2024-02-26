@@ -1,12 +1,13 @@
-import { StatusBar } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context'; // 替换 SafeAreaView , 支持 Android 和 iOS
-import { NavigationContainer } from '@react-navigation/native';
-import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context' // 替换 SafeAreaView , 支持 Android 和 iOS
+import { NavigationContainer } from '@react-navigation/native'
+import { TransitionPresets, createStackNavigator } from '@react-navigation/stack'
 
-import Welcome from '@src/modules/welcome';
-import Login from '@src/modules/login';
-import MainTab from '@src/modules/mainTab';
-import ArticleDetail from '@src/modules/articleDetail';
+import Welcome from '@src/modules/welcome'
+import Login from '@src/modules/login'
+import MainTab from '@src/modules/mainTab'
+import ArticleDetail from '@src/modules/articleDetail'
+import SeachGoods from '@src/modules/shopping/components/searchGoods'
 
 const Stack = createStackNavigator()
 
@@ -43,10 +44,18 @@ const App = (): JSX.Element => {
               ...TransitionPresets.SlideFromRightIOS
             }}
           />
+          <Stack.Screen
+            name='SearchGoods'
+            component={SeachGoods}
+            options={{
+              headerShown: false,
+              presentation: 'transparentModal' // 无缝切换效果
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,9 +1,22 @@
-import { View, Text } from "react-native";
+import shoppingStore from '@src/store/shoppingStore'
+import { useEffect } from 'react'
+import { View } from 'react-native'
+import styles from './styles'
+import Title from './components/title'
+import List from './components/list'
 
 export default () => {
+  const { setShoppingList, setTopTenCategoryList } = shoppingStore((state) => state)
+
+  useEffect(() => {
+    setShoppingList()
+    setTopTenCategoryList()
+  }, [])
+
   return (
-    <View>
-      <Text>这是购物页</Text>
+    <View style={styles.root}>
+      <Title />
+      <List />
     </View>
   )
 }
