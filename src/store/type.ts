@@ -56,9 +56,9 @@ export interface ParamsType {
 }
 
 export type Category = {
-  name: string; // 名称
-  default: boolean; // 是否是默认展示
-  isAdd: boolean; // 是否是已经添加的
+  name: string // 名称
+  default: boolean // 是否是默认展示
+  isAdd: boolean // 是否是已经添加的
 }
 
 export type IArticleDetail = {
@@ -68,12 +68,12 @@ export type IArticleDetail = {
 
 // 购物列表-商品信息
 export type GoodsSimple = {
-  id: number;
-  title: string;
-  image: string;
-  price: number;
-  originPrice: number | undefined;
-  promotion: string | undefined;
+  id: number
+  title: string
+  image: string
+  price: number
+  originPrice: number | undefined
+  promotion: string | undefined
 }
 
 export type IShoppingStore = {
@@ -87,7 +87,30 @@ export type IShoppingStore = {
 }
 
 export type GoodsCategory = {
-  id: number;
-  name: string;
-  image: string;
+  id: number
+  name: string
+  image: string
+}
+
+// 消息列表
+export type MessageListItem = {
+  id: number
+  name: string
+  avatarUrl: string
+  lastMessage?: string
+  lastMessageTime?: string
+}
+
+// 未读列表
+export type IUnReadList = {
+  unreadFavorate: number,
+  newFollow: number,
+  comment: number,
+}
+
+export type IMessageStore = {
+  messageList: MessageListItem[]
+  setMessageList: () => void
+  setRequestUnReadList: () => void
+  unReadList: IUnReadList
 }

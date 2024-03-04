@@ -1,10 +1,13 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import Home from "../home"
-import { Image, Text, View, TouchableOpacity } from "react-native"
-import { styles } from './styles'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Image, Text, View, TouchableOpacity } from 'react-native'
+import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker'
+
+import Home from '../home'
+import Shopping from '../shopping'
+import Message from '../message'
+
 import icon_tab_publish from '@src/assets/icon_tab_publish.png'
-import Shopping from "../shopping"
-import { ImagePickerResponse, launchImageLibrary } from "react-native-image-picker"
+import { styles } from './styles'
 
 const BottomTab = createBottomTabNavigator()
 
@@ -105,16 +108,16 @@ export default () => {
             headerShown: false,
           }}
         />
+        <BottomTab.Screen
+          name='Message'
+          component={Message}
+          options={{
+            title: '消息',
+            headerShown: false,
+          }}
+        />
         {/* <BottomTab.Screen
-        name='Home'
-        component={Home}
-      />
-      <BottomTab.Screen
-        name='Home'
-        component={Home}
-      />
-      <BottomTab.Screen
-        name='Home'
+        name='Mine'
         component={Home}
       /> */}
       </BottomTab.Navigator>
