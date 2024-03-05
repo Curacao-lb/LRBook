@@ -6,7 +6,8 @@ import Loading from '@src/components/widget/Loading'
 
 const userStore = create((set) => ({
   userInfo: {},
-  setUserInfo: (params: any) => requestLogin(params, set)
+  setUserInfo: (params: any) => requestLogin(params, set),
+  directSetUserInfo: (info: any) => set({ userInfo: info }),
 }))
 
 const requestLogin = async (params: any, set: Function): Promise<string> => {

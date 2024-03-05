@@ -5,9 +5,11 @@ import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { load } from "@src/store";
+import userStore from "@src/store/userStore";
 
 export default () => {
   const Navigation = useNavigation<StackNavigationProp<any>>()
+  const { directSetUserInfo } = userStore((state: any) => state)
   useEffect(() => {
     setTimeout(() => {
       getUserInfo()
@@ -16,7 +18,9 @@ export default () => {
 
   const getUserInfo = async () => {
     const cachedUserInfo = await load('userInfo')
+
     if (cachedUserInfo) {
+      directSetUserInfo(JSON.parse(cachedUserInfo))
       Navigation.replace('MainTab')
     } else {
       Navigation.replace('Login')

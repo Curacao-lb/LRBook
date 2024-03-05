@@ -5,6 +5,7 @@ import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-pick
 import Home from '../home'
 import Shopping from '../shopping'
 import Message from '../message'
+import Mine from '../mine'
 
 import icon_tab_publish from '@src/assets/icon_tab_publish.png'
 import { styles } from './styles'
@@ -116,10 +117,14 @@ export default () => {
             headerShown: false,
           }}
         />
-        {/* <BottomTab.Screen
-        name='Mine'
-        component={Home}
-      /> */}
+        <BottomTab.Screen
+          name='Mine'
+          component={Mine}
+          options={{
+            title: '我的',
+            headerShown: false,
+          }}
+        />
       </BottomTab.Navigator>
     </View>
   )

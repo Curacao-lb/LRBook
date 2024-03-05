@@ -1,4 +1,4 @@
-import { GestureResponderEvent, Image, Text, TouchableWithoutFeedback, View, TouchableOpacity } from "react-native";
+import { GestureResponderEvent, Image, Text, View, TouchableOpacity } from "react-native";
 import styles from "../styles";
 
 import icon_group from '@src/assets/icon_group.png';
