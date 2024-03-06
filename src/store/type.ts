@@ -114,3 +114,12 @@ export type IMessageStore = {
   setRequestUnReadList: () => void
   unReadList: IUnReadList
 }
+
+export type IMineStore = {
+  noteList: ArticleSimple[]
+  collectionList: ArticleSimple[]
+  favorateList: ArticleSimple[]
+  info: any
+  refreshing: boolean
+  setList: () => void
+}

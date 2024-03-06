@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
   root: {
@@ -143,5 +145,105 @@ export const infoStyles = StyleSheet.create({
     width: 20,
     height: 20,
     tintColor: '#ffffff'
+  },
+})
+
+export const tabsStyles = StyleSheet.create({
+  titleLayout: {
+    width: '100%',
+    height: 48,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    paddingHorizontal: 16,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  icon: {
+    width: 28,
+    height: 28,
+  },
+  line: {
+    width: 28,
+    height: 2,
+    backgroundColor: '#ff2442',
+    borderRadius: 1,
+    position: 'absolute',
+    bottom: 6,
+  },
+  tabButton: {
+    height: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 14,
+  },
+  tabTxt: {
+    fontSize: 17,
+    color: '#999',
+  },
+  tabTxtSelected: {
+    fontSize: 17,
+    color: '#333',
+  },
+})
+
+export const listStyles = StyleSheet.create({
+  listContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    backgroundColor: 'white',
+  },
+  item: {
+    width: SCREEN_WIDTH - 18 >> 1,
+    backgroundColor: 'white',
+    marginLeft: 6,
+    marginBottom: 6,
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginTop: 8,
+  },
+  titleTxt: {
+    fontSize: 14,
+    color: '#333',
+    marginHorizontal: 10,
+    marginVertical: 4,
+  },
+  nameLayout: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  avatarImg: {
+    width: 20,
+    height: 20,
+    resizeMode: 'cover',
+    borderRadius: 10,
+  },
+  nameTxt: {
+    fontSize: 12,
+    color: '#999',
+    marginLeft: 6,
+    flex: 1,
+  },
+  heart: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+  },
+  countTxt: {
+    fontSize: 14,
+    color: '#999',
+    marginLeft: 4,
+  },
+  itemImg: {
+    width: SCREEN_WIDTH - 18 >> 1,
+    height: 240,
   },
 })
