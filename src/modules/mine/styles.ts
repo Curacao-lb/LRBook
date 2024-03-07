@@ -247,3 +247,74 @@ export const listStyles = StyleSheet.create({
     height: 240,
   },
 })
+
+export const menuStyles = StyleSheet.create({
+  root: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#000000C0',
+    flexDirection: 'row',
+  },
+  content: {
+    height: '100%',
+    width: SCREEN_WIDTH * 0.75,
+    backgroundColor: 'white',
+  },
+  scrollView: {
+    width: '100%',
+    flex: 1,
+  },
+  bottomLayout: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingTop: 12,
+    paddingBottom: 20,
+  },
+  bottomMenuItem: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  bottomMenuIconWrap: {
+    width: 44,
+    height: 44,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomMenuIcon: {
+    width: 26,
+    height: 26,
+  },
+  bottomMenuTxt: {
+    fontSize: 13,
+    color: '#666',
+    marginTop: 8,
+  },
+  divideLine: {
+    width: '100%',
+    height: 1,
+    backgroundColor: '#eee',
+  },
+  menuItem: {
+    width: '100%',
+    height: 64,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  menuItemIcon: {
+    width: 32,
+    height: 32,
+    resizeMode: 'contain',
+  },
+  menuItemTxt: {
+    fontSize: 16,
+    color: '#333',
+    marginLeft: 14,
+  },
+  container: {
+    paddingTop: 72,
+    paddingHorizontal: 28,
+    paddingBottom: 12,
+  },
+})

@@ -5,14 +5,12 @@ import icon_menu from '@src/assets/icon_menu.png'
 import icon_shop_car from '@src/assets/icon_shop_car.png'
 import icon_share from '@src/assets/icon_share.png'
 
-export default () => {
+export default ({ openMenu }: { openMenu: () => void }) => {
   return (
     <View style={titleStyles.titleLayout}>
       <TouchableOpacity
         style={titleStyles.menuButton}
-      // onPress={() => {
-      //   sideMenuRef.current?.show();
-      // }}
+        onPress={openMenu}
       >
         <Image style={titleStyles.menuImg} source={icon_menu} />
       </TouchableOpacity>

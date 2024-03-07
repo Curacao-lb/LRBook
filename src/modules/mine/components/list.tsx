@@ -1,4 +1,4 @@
-import { Image, LayoutChangeEvent, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { Image, LayoutChangeEvent, RefreshControl, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 
 import { infoStyles, styles, tabsStyles, listStyles } from '../styles'
 
@@ -153,10 +153,17 @@ const List = ({ tabIndex, navigation }: { tabIndex: number, navigation: StackNav
 export default ({ setBgImgHeight }: { setBgImgHeight: (height: number) => void }) => {
   const [tabIndex, setTabIndex] = useState<number>(0)
   const navigation = useNavigation<StackNavigationProp<any>>()
+  const { refreshing, setList } = mineStore((state: IMineStore) => state)
 
   return (
     <ScrollView
       style={styles.scrollView}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={setList}
+        />
+      } // 下拉刷新组件
     >
       <Info {...{ setBgImgHeight }} />
       <Tabs {...{ setTabIndex, tabIndex }} />
