@@ -21,6 +21,8 @@ import com.imagepicker.ImagePickerPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
+// react-native-update
+import cn.reactnative.modules.update.UpdatePackage;
 
 public class PackageList {
   private Application application;
@@ -70,7 +72,8 @@ public class PackageList {
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
       new SafeAreaContextPackage(),
-      new RNScreensPackage()
+      new RNScreensPackage(),
+      new UpdatePackage()
     ));
   }
 }

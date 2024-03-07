@@ -108,3 +108,5 @@ flow-typed/npm/
 
 # 忽略 Prettier 配置文件
 .prettierrc
+
+.update

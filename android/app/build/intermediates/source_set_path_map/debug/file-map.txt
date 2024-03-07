@@ -42,3 +42,4 @@ com.lrbook.app-packaged_res-40 /Users/luobin/project/LRBook/node_modules/react-n
 com.lrbook.app-packaged_res-41 /Users/luobin/project/LRBook/node_modules/react-native-image-picker/android/build/intermediates/packaged_res/debug
 com.lrbook.app-packaged_res-42 /Users/luobin/project/LRBook/node_modules/react-native-safe-area-context/android/build/intermediates/packaged_res/debug
 com.lrbook.app-packaged_res-43 /Users/luobin/project/LRBook/node_modules/react-native-screens/android/build/intermediates/packaged_res/debug
+com.lrbook.app-packaged_res-44 /Users/luobin/project/LRBook/node_modules/react-native-update/android/build/intermediates/packaged_res/debug

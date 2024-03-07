@@ -1,6 +1,7 @@
 package com.lrbook
 
 import android.app.Application
+import cn.reactnative.modules.update.UpdateContext
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
@@ -16,6 +17,10 @@ class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
       object : DefaultReactNativeHost(this) {
+          override fun getJSBundleFile(): String? {
+              return UpdateContext.getBundleUrl(this@MainApplication)
+          }
+
         override fun getPackages(): List<ReactPackage> {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
