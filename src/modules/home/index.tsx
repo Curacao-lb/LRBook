@@ -1,17 +1,19 @@
-import { useCallback, useEffect } from "react"
-import { View, Text, TouchableOpacity, Image } from "react-native"
-
-import homeStore from "@src/store/homeStore"
-import { ArticleSimple, Category, IhomeStore } from "@src/store/type"
-import FlowList from '@src/components/flowlist/FlowList.js'
-import ResizeImage from "@src/components/resizeImage"
-
-import { indexStyles } from './style'
-import Heart from "@src/components/heart"
-import TitleBar from "./components/titleBar"
-import CategoryList from "./components/categoryList"
+import { useCallback, useEffect, useState } from "react"
+import { View, Text, TouchableOpacity, Image, Platform } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
+
+import homeStore from "@src/store/homeStore"
+import FlowList from '@src/components/flowlist/FlowList.js'
+import ResizeImage from "@src/components/resizeImage"
+import Heart from "@src/components/heart"
+import { ArticleSimple, Category, IhomeStore } from "@src/store/type"
+
+import TitleBar from "./components/titleBar"
+import CategoryList from "./components/categoryList"
+import { usePushy } from 'react-native-update'
+
+import { indexStyles } from './style'
 
 const Footer = () => {
   return (
@@ -23,11 +25,32 @@ export default () => {
   const { setHomeList, homeList, isRefreshing, resetPage, getCategoryList, categoryList } = homeStore((state: IhomeStore) => state)
 
   const navigation = useNavigation<StackNavigationProp<any>>()
+  const { checkUpdate, downloadUpdate, updateInfo, switchVersion, markSuccess, } = usePushy();
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     setHomeList()
     getCategoryList()
+
+    checkPath()
+
+    if (updateInfo?.upToDate) {
+      markSuccess()
+    }
   }, [])
+
+  // 检查补丁更新
+  const checkPath = async (): Promise<void> => {
+    await checkUpdate();
+
+    if (updateInfo?.update) {
+      setUpdate(false)
+      await downloadUpdate();
+      setUpdate(true)
+      // switchVersionLater 延迟安装
+      switchVersion()
+    }
+  }
 
   const getData = (): void => {
     resetPage()
