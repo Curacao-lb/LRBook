@@ -67,7 +67,7 @@ export const infoStyles = StyleSheet.create({
   },
   nameTxt: {
     fontSize: 22,
-    color: 'white',
+    color: '#4c352b',
     fontWeight: 'bold',
   },
   idLayout: {

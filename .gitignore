@@ -110,3 +110,4 @@ flow-typed/npm/
 .prettierrc
 
 .update
+.pushy
